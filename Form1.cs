@@ -13,7 +13,7 @@ namespace Project
 {
     public partial class Form1 : Form
     {
-        private string variableRegexPattern = @"p_(\w*) * IN * VARCHAR2";
+        private string variableRegexPattern = @"p_(\w*) * string";
 
         public Form1()
         {
@@ -34,8 +34,8 @@ namespace Project
 
             foreach(string variable in matchedVariables)
             {
-                string pattern = @"( *)\'( *)\'( *)\'( *)\|\|( *)" + variable.Replace("IN VARCHAR2", " ").Trim() + @"( *)\|\|( *)\'( *)\'( *)\'( *)\'( *)\;( *)";
-                string replacement = @"'||DBMS_ASSERT.ENQUOTE_LITERAL(" + variable.Replace("IN VARCHAR2", " ").Trim() + @");";
+                string pattern = @"( *)\'( *)\'( *)\'( *)\|\|( *)" + variable.Replace("string", " ").Trim() + @"( *)\|\|( *)\'( *)\'( *)\'( *)\'( *)\;( *)";
+                string replacement = @"'||DBMS_ASSERT(" + variable.Replace("string", " ").Trim() + @");";
 
                 sp=Regex.Replace(sp, pattern, replacement);
 
