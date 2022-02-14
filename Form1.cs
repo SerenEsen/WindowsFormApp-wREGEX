@@ -34,7 +34,7 @@ namespace Project
 
             foreach(string variable in matchedVariables)
             {
-                string pattern = @"( *)\'( *)\'( *)\'( *)\|\|( *)" + variable.Replace("string", " ").Trim() + @"( *)\|\|( *)\'( *)\'( *)\'( *)\'( *)\;( *)";
+                string pattern = @"( *)\'( *)\'( *)\|)" + variable.Replace("string", " ").Trim() + @"( *)\'( *)\'( *)\'( *)\;( *)";
                 string replacement = @"'||DBMS_ASSERT(" + variable.Replace("string", " ").Trim() + @");";
 
                 sp=Regex.Replace(sp, pattern, replacement);
